@@ -47,4 +47,8 @@ def valida_login(request):
         request.session['usuario'] = usuario[0].id
         return redirect('/livro/home')
 
+def sair(request):
+      request.session.flush()
+      return redirect('/auth/login/')
+
    
