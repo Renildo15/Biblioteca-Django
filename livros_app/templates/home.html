@@ -3,6 +3,8 @@
 {% block 'conteudo' %}
 
 <div class="container">
+  <br>
+  <a href="{% url 'sair' %}" class="btn btn-danger">Sair</a>
     <div class="row">
         {% for livro in livros %}
             <div class="col-md">

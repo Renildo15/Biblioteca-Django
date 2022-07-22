@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-
+{% block 'titulo' %}Livro - {{livro.nome}}{% endblock %}
 {% block 'conteudo' %}
 <div class="container">
     <br>
-    <form>
+    <form action="#" method="POST">
+      {% csrf_token %}
         <p>
             <label>Nome do livro:</label>
             <input class="form-control" type="texte" value="{{livro.nome}}" name="nome_livro">
@@ -18,11 +19,22 @@
             <label>Co-autor:</label>
             <input style="width: 40%;" class="form-control" type="texte" value="{{livro.co_autor}}" name="co_autor">
           </p>
-    
+          <label>Categoria</label>
+          <select name = "categoria" class = "form-control" style = "width: 20%">
+            {% for i in categoria_livro %}
+            {% if livro.categoria.nome == i.nome %}
+              <option selected>{{i}}</option>
+            {% else %} 
+              <option>{{i}}</option>
+            {% endif %} 
+            {% endfor %}
+          </select>
           <p>
             <label>Data:</label>
             <input style="width: 40%;" class="form-control" type="texte" value="{{livro.data_cadastro}}" name="co_autor">
           </p>
+
+          
         <label>Emprestado</label>
         {% if livro.emprestado %}
           <svg style="color: green" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -36,5 +48,31 @@
         <br>
         <input type="submit" class="btn btn-success btn-lg" value="Salvar">
     </form>
+    <hr>
+    <h1>Histórico de empréstimo</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Data Emprestimo</th>
+          <th scope="col">Data devolução</th>
+          <th scope="col">Tempo de duração</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in emprestimos %}
+        <tr>
+          {% if i.nome_emprestado_anonimo %}
+          <th scope="row">{{i.nome_emprestado_anonimo}}</th>
+          {% else %}
+          <th scope="row">{{i.nome_emprestado}}</th>
+          {% endif %}
+          <td>{{i.data_emprestimo}}</td>
+          <td>{{i.data_devolucao}}</td>
+          <td></td>
+        </tr>
+        {% endfor %} 
+      </tbody>
+    </table>
 </div>
 {% endblock 'conteudo' %}
