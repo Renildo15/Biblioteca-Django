@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load filtros %}
 {% block 'titulo' %}Livro - {{livro.nome}}{% endblock %}
 {% block 'conteudo' %}
 <div class="container">
@@ -69,7 +70,7 @@
           {% endif %}
           <td>{{i.data_emprestimo}}</td>
           <td>{{i.data_devolucao}}</td>
-          <td></td>
+          <td>{{i.data_devolucao|mostra_duracao:i.data_emprestimo}} Dias</td>
         </tr>
         {% endfor %} 
       </tbody>
