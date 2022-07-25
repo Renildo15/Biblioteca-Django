@@ -23,7 +23,7 @@
         
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
             <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal" >Opções</button>
-            <a href="#" class="btn btn-danger dropdown-item">Seus emprestimos</a>
+            <a href="{% url 'seus_emprestimos' %}" class="btn btn-danger dropdown-item">Seus emprestimos</a>
             <a href="{% url 'sair'%}" class="btn btn-danger dropdown-item">Sair</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item">Total: {{total_livros}}</a>
@@ -42,7 +42,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cadastrar livro</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Cadastrar/Emprestar/Devolver</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
