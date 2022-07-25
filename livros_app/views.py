@@ -18,7 +18,7 @@ def home(request):
         livros_emprestar = Livros.objects.filter(usuario = usuario).filter(emprestado = False)
 
         return render(request, 'home.html',{'livros': livros, 'usuario_logado': request.session.get('usuario'), 
-        'form' : form,'form_categoria': form_categoria, 'status_categoria': status_categoria, 'usuarios' : usuarios, 'livros_emprestar' : livros_emprestar})
+        'form' : form,'form_categoria': form_categoria, 'status_categoria': status_categoria, 'usuarios' : usuarios, 'livros_emprestar' : livros_emprestar,})
     else: 
         return redirect('/auth/login/?status=2')
 

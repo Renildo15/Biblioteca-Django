@@ -83,7 +83,7 @@
               <input id="nome_emprestado_anonimo" type="text" placeholder="Digite o nome para quem emprestou..." name="nome_emprestado_anonimo" class="form-control">
               <br>
               <select name="livro_emprestado" class="form-control">
-                {% for livro in livros %}
+                {% for livro in livros_emprestar %}
                 <option value='{{livro.id}}'>
                   {{livro.nome}}
                 </option>
