@@ -150,7 +150,13 @@ def processa_avaliacao(request):
     id_emprestimo = request.POST.get('id_emprestimo')
     opcoes = request.POST.get('opcoes')
     id_livro = request.POST.get('id_livro')
+    id_usuario_logado = request.session['usuario']
     emprestimo = Emprestimos.objects.get(id = id_emprestimo)
-    emprestimo.avaliacao = opcoes
-    emprestimo.save()
-    return redirect(f'/livro/ver_livro/{id_livro}')
+    id_usuario_livro = emprestimo.livro.usuario.id
+
+    if id_usuario_livro == id_usuario_logado:
+        emprestimo.avaliacao = opcoes
+        emprestimo.save()
+        return redirect(f'/livro/ver_livro/{id_livro}')
+    else:
+        return HttpResponse("Esse emprestimo não é seu!")
