@@ -147,4 +147,10 @@ def seus_emprestimos(request):
 
 
 def processa_avaliacao(request):
-    return HttpResponse('Teste')
+    id_emprestimo = request.POST.get('id_emprestimo')
+    opcoes = request.POST.get('opcoes')
+    id_livro = request.POST.get('id_livro')
+    emprestimo = Emprestimos.objects.get(id = id_emprestimo)
+    emprestimo.avaliacao = opcoes
+    emprestimo.save()
+    return redirect(f'/livro/ver_livro/{id_livro}')

@@ -18,7 +18,7 @@ class Livros(models.Model):
     co_autor = models.CharField(max_length=30, blank=True, null= True)
     data_cadastro = models.DateField(default=date.today)
     emprestado = models.BooleanField(default=False)
-    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, blank=True, null= True)
     usuario = models.ForeignKey(Usuario,on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -34,11 +34,11 @@ class Emprestimos(models.Model):
         ('B', 'Bom'),
         ('O', 'Ótimo')
     )
-    nome_emprestado = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, blank = True, null = True)
+    nome_emprestado = models.ForeignKey(Usuario, on_delete=models.SET_NULL, blank = True, null = True)
     nome_emprestado_anonimo = models.CharField(max_length = 30, blank = True, null = True)
     data_emprestimo = models.DateTimeField(default=datetime.datetime.now())
     data_devolucao = models.DateTimeField(blank = True, null = True)
-    livro = models.ForeignKey(Livros, on_delete=models.DO_NOTHING)
+    livro = models.ForeignKey(Livros, on_delete=models.CASCADE, blank=True, null= True)
     avaliacao = models.CharField(max_length=1, choices=choices, null=True, blank=True)
 
     def __str__(self) -> str:
