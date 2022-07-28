@@ -14,10 +14,14 @@
             <div class="col-md">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-
+                      
+                      {% if livro.img %}
+                        <img width="100" src="{{livro.img.url}}">
+                      {% else %}
+                        <img src="#"> 
+                      {% endif %}
+                  
                       <h5 class="card-title">{{livro.nome}}</h5>
-                     
-                     
                       <h6 style="display: inline;" class="card-subtitle mb-2 text-muted">Emprestado</h6>
                       
                       {% if livro.emprestado %}
